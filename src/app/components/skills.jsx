@@ -27,8 +27,8 @@ const SkillCarousel = () => {
     const displaySkills = [...skills, ...skills];
 
     return (
-        <section className="w-full py-12 bg-gray-200 flex flex-col items-center space-y-20">
-            <h2 className="text-3xl font-bold mb-8 tracking-widest uppercase text-gray-800">
+        <section className="w-full py-12 bg-gray-200 flex flex-col items-center space-y-10">
+            <h2 className="tracking-widest uppercase">
                 My Skills
             </h2>
             <div className="relative w-full overflow-hidden">

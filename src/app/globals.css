@@ -108,10 +108,21 @@ h6 {
   line-height: var(--h6-lh);
   font-weight: 500;
 }
+h7 {
+  font-family: var(--font-primary);
+  font-size: var(--h7-size);
+  line-height: var(--h7-lh);
+  font-weight: 500;
+}
 p {
   font-family: var(--font-secondary);
   font-size: var(--p-size);
   line-height: var(--p-lh);
+}
+sp{
+  font-family: var(--font-secondary);
+  font-size: var(--p-small-size);
+  line-height: var(--p-small-lh);
 }
 button {
   font-family: var(--font-primary);
@@ -140,7 +151,7 @@ span {
 }
 /*responsive width for main content*/
 main{
-  width: 1280px;;
+  max-width: 1280px;;
 }
 
 /* Responsive Typography - Tablet (max-width: 768px) */

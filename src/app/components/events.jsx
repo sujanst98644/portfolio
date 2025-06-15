@@ -26,7 +26,7 @@ const events = [
         link: "https://ictframe.com/ascol-hackfest-2024-concludes/",
     },
     {
-        id: 3,
+        id: 4,
         image: "/woman-jacket.jpg",
         title: "Web Dev Meetup",
         date: "November 2021",
@@ -34,7 +34,7 @@ const events = [
         link: "https://ictframe.com/ascol-hackfest-2024-concludes/",
     },
     {
-        id: 3,
+        id: 5,
         image: "/woman-jacket.jpg",
         title: "Web Dev Meetup",
         date: "November 2021",
@@ -50,31 +50,31 @@ const Events = () => {
     return (
         <main className="px-[1rem] py-[4rem]">
             <h2 className="mb-8 text-center text-gray-800">Events & Conferences</h2>
-            <div className="grid grid-cols-3 grid-rows-2 gap-10">
+            <div className="grid lg:grid-cols-3 lg:grid-rows-2 md:grid-cols-3 grid-cols-2 gap-10">
                 {events.map((event, idx) => (
                     <div key={event.id} className="flex flex-col items-center transition-shadow">
                         <a
                             href={event.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative w-100 h-100 block"
+                            className="relative lg:w-100 lg:h-100 md:w-60 md:h-60 w-40 h-40 block"
                             onMouseEnter={() => setImgHoveredIdx(idx)}
                             onMouseLeave={() => setImgHoveredIdx(null)}
                         >
                             <img
                                 src={event.image}
                                 alt={event.title}
-                                className="w-100 h-100 object-cover border border-gray-200"
+                                className="lg:w-100 lg:h-100 md:w-60 md:h-60 w-40 h-40 object-cover border border-gray-200"
                                 style={{ borderRadius: 0 }}
                             />
                             {imgHoveredIdx === idx && (
                                 <div className="absolute inset-0 bg-[rgba(0,0,0,0.4)] bg-opacity-60 flex items-center justify-center text-white text-center p-4 transition-opacity duration-200">
-                                    <p>{event.description}</p>
+                                    <sp>{event.description}</sp>
                                 </div>
                             )}
                         </a>
                         <div className="flex flex-col items-center mt-4 w-full">
-                            <h6 className="text-xl font-semibold text-gray-900 text-center">{event.title}</h6>
+                            <h7 className="text-xl font-semibold text-gray-900 text-center">{event.title}</h7>
                             <div
                                 className="relative mt-1 mb-2 text-sm text-gray-500 cursor-pointer"
                                 onMouseEnter={() => setHoveredIdx(idx)}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -28,9 +28,16 @@ const projects = [
   // Add more projects as needed
 ];
 
-const VISIBLE_COUNT = 4;
+const VISIBLE_COUNT = 2;
+
+const getvisibleCount = () => {
+  if (window.innerWidth < 640) return 2; // mobile
+  if (window.innerWidth < 1024) return 3; // tablet (smaller than lg)
+  return 4; // desktop
+};
 
 const Masonry = () => {
+  const [visibleCount, setVisibleCount] = useState(getvisibleCount);
   const [startIdx, setStartIdx] = useState(0);
   // By default, the middle card is hovered (if possible)
   const defaultHovered = Math.floor(VISIBLE_COUNT / 2);
@@ -42,9 +49,14 @@ const Masonry = () => {
 
   // Get visible projects with wrap-around
   const visibleProjects = [];
-  for (let i = 0; i < VISIBLE_COUNT; i++) {
+  for (let i = 0; i < visibleCount; i++) {
     visibleProjects.push(projects[(startIdx + i) % projects.length]);
   }
+  useEffect(() => {
+    const handleResize = () => setVisibleCount(getvisibleCount());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center w-full space-y-30">
@@ -55,20 +67,20 @@ const Masonry = () => {
         </p>
       </div>
       <div className="flex items-center justify-center w-full">
-        {/* <button
-                    onClick={prev}
-                    className=""
-                >
-                    &#8592;
-                </button> */}
-        <div className="flex h-[60vh] justify-center items-center overflow-visible">
+        <div
+          onClick={prev}
+          className="lg:hidden block cursor-pointer p-4 text-3xl"
+        >
+          &#8249;
+        </div>
+        <div className="flex lg:h-[60vh] md:h-[50vh] sm:h-[50vh] justify-center items-center overflow-visible">
           {visibleProjects.map((project, idx) => (
             <div
               key={project.id}
               className={`relative transition-all duration-300  ${
                 hovered === idx
-                  ? "z-20 w-[120%] shadow-2xl transition-all duration-300"
-                  : "z-10 w-[100%]"
+                  ? "z-20 lg:w-[150%] w-[170%] shadow-2xl transition-all duration-300"
+                  : "z-10 lg:w-[100%] w-[100%] "
               } `}
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(defaultHovered)}
@@ -76,7 +88,7 @@ const Masonry = () => {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-[70vh] object-cover"
+                className="w-full lg:h-[70vh] h-[50vh] object-cover"
               />
               <div className="absolute inset-0 bg-[rgba(0,0,0,0.6)] bg-opacity-30 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
                 <div className="text-white text-center">
@@ -87,14 +99,13 @@ const Masonry = () => {
             </div>
           ))}
         </div>
-        {/* <button
-                    onClick={next}
-                    className=""
-                >
-                    &#8594;
-                </button> */}
+        <div
+          onClick={next}
+          className="lg:hidden block cursor-pointer p-4 text-3xl"
+        >
+          &#8250;
+        </div>
       </div>
-      
     </div>
   );
 };

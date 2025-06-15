@@ -3,11 +3,11 @@ import React from "react";
 export default function Foot() {
     return (
         <footer className="bg-gray-200 text-gray-300 py-8 flex flex-col items-center justify-center">
-            <main >
+            <main className="w-full">
                 <div className="px-4 flex flex-col md:flex-row items-center justify-between">
                     {/* Logo and Name */}
                 <div className="flex items-center mb-4 md:mb-0">
-                    <p className="bg-gradient-to-r from-blue-500 to-purple-600 rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl mr-3">
+                    <p className="bg-[#f04161] rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl mr-3">
                         {/* Replace with your logo or initials */}
                         S
                     </p>

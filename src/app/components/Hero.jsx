@@ -12,11 +12,13 @@ const logos = [
   { name: "ExpressJS", src: "/express.svg" },
 ];
 
-const radius = 230;
 const logoSize = 70;
+
+const getRadius = () => (window.innerWidth >= 640 ? 230 : 150);
 
 const Carousel3D = () => {
   const [active, setActive] = useState(0);
+  const [radius, setRadius] = useState(getRadius());
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -25,23 +27,31 @@ const Carousel3D = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => setRadius(getRadius());
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div>
-      <main className="flex flex-row items-center justify-between px-1rem py-4rem">
-        <div className="w-3/4 space-y-4">
+      <main className="flex lg:flex-row flex-col-reverse items-center justify-between px-[1rem] lg:py-[4rem]">
+        <div className="lg:w-3/4 space-y-4 w-full items-center text-center lg:text-left">
           <h1>
-            Building Clean, <span>Fast & Scalable</span> Web Experiences for Modern Brands.
+            Building Clean, <span>Fast & Scalable</span> Web Experiences for
+            Modern Brands.
           </h1>
           <p>
             Hi, I'm Sujan — a Web Developer who turns ideas into beautiful
-            digital solutions. I specialize in building <span>SEO-friendly WordPress &
-            Next.js</span> websites that load fast and convert better.
+            digital solutions. I specialize in building
+            <span>SEO-friendly WordPress &amp; Next.js</span> websites that load
+            fast and convert better.
           </p>
           <button>Get in touch</button>
         </div>
         <div
-          className="flex items-center justify-center w-1/2"
-          style={{ height: 600, margin: "0 auto" }}
+          className="flex items-center justify-center w-1/2 lg:h-[500px] md:h-[600px] h-[400px]"
+          style={{ margin: "0 auto" }}
         >
           {/* 3D Carousel Items */}
           <div className="relative w-full h-full">
@@ -117,10 +127,9 @@ const Carousel3D = () => {
             <img
               src="/hero-image.png"
               alt="hero"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full
+                w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px]"
               style={{
-                width: 400,
-                height: 400,
                 objectFit: "cover",
                 zIndex: 3,
               }}

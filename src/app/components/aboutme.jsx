@@ -2,11 +2,11 @@ import React from "react";
 
 const AboutMe = () => (
   <div>
-    <main className="flex flex-row mx-auto py-[4rem] px-[1rem] gap-8">
-      <section className="w-1/3">
+    <main className="flex lg:flex-row flex-col  mx-auto py-[4rem] px-[1rem] gap-8">
+      <section className="lg:w-1/3">
         <img src="/woman-jacket.jpg" alt="woman-smiling-demin-jacket" />
       </section>
-      <section className="px-8 w-2/3">
+      <section className="px-8 lg:w-2/3">
         <h2 className=" font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">
           About Me
         </h2>

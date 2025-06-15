@@ -12,13 +12,11 @@ const logos = [
   { name: "ExpressJS", src: "/express.svg" },
 ];
 
-const logoSize = 70;
-
-const getRadius = () => (window.innerWidth >= 640 ? 230 : 150);
+const logoSize = 70;// Default to desktop radius
 
 const Carousel3D = () => {
   const [active, setActive] = useState(0);
-  const [radius, setRadius] = useState(getRadius());
+  const [radius, setRadius] = useState(230);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,9 +26,15 @@ const Carousel3D = () => {
   }, []);
 
   useEffect(() => {
-    const handleResize = () => setRadius(getRadius());
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+  const getRadius = () => (window.innerWidth >= 768 ? 230 : 150);
+  setRadius(getRadius());
+
+  const handleResize = () => {
+    setRadius(getRadius());
+  };
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (

@@ -30,14 +30,9 @@ const projects = [
 
 const VISIBLE_COUNT = 2;
 
-const getvisibleCount = () => {
-  if (window.innerWidth < 640) return 2; // mobile
-  if (window.innerWidth < 1024) return 3; // tablet (smaller than lg)
-  return 4; // desktop
-};
 
 const Masonry = () => {
-  const [visibleCount, setVisibleCount] = useState(getvisibleCount);
+  const [visibleCount, setVisibleCount] = useState(4);
   const [startIdx, setStartIdx] = useState(0);
   // By default, the middle card is hovered (if possible)
   const defaultHovered = Math.floor(VISIBLE_COUNT / 2);
@@ -53,9 +48,20 @@ const Masonry = () => {
     visibleProjects.push(projects[(startIdx + i) % projects.length]);
   }
   useEffect(() => {
-    const handleResize = () => setVisibleCount(getvisibleCount());
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+  const getVisibleCount = () => {
+    if (window.innerWidth < 640) return 2;
+    if (window.innerWidth < 1024) return 3;
+    return 4;
+  };
+
+  setVisibleCount(getVisibleCount());
+
+  const handleResize = () => {
+    setVisibleCount(getVisibleCount());
+  };
+
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (

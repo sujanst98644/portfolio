@@ -1,36 +1,73 @@
 import React from "react";
 
 export default function Foot() {
-    return (
-        <footer className="bg-gray-200 text-gray-300 py-8 flex flex-col items-center justify-center">
-            <main className="w-full">
-                <div className="px-4 flex flex-col md:flex-row items-center justify-between">
-                    {/* Logo and Name */}
-                <div className="flex items-center mb-4 md:mb-0">
-                    <p className="bg-[#f04161] rounded-full w-10 h-10 flex items-center justify-center font-bold text-xl mr-3">
-                        {/* Replace with your logo or initials */}
-                        S
-                    </p>
-                    <p className="text-black font-semibold text-lg tracking-wide">Sujan's Portfolio</p>
-                </div>
-                {/* Links */}
-                <nav className="flex flex-wrap gap-6 text-sm">
-                    <a href="#about" className="hover:text-white transition">About</a>
-                    <a href="#projects" className="hover:text-white transition">Projects</a>
-                    <a href="#skills" className="hover:text-white transition">Skills</a>
-                    <a href="#contact" className="hover:text-white transition">Contact</a>
-                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">GitHub</a>
-                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">LinkedIn</a>
-                </nav>
-                </div>
-                <div className="container mx-auto px-4 mt-6 border-t border-gray-700 pt-4 flex flex-col md:flex-row items-center justify-between text-xs text-gray-500">
-                <span>&copy; {new Date().getFullYear()} Sujan. All rights reserved.</span>
-                <span>
-                    Built with <a href="https://react.dev/" className="underline hover:text-white">React</a> &amp; <a href="https://tailwindcss.com/" className="underline hover:text-white">Tailwind CSS</a>
-                </span>
+  return (
+    <footer className="bg-gray-200 text-black py-12 px-4">
+      <main className="max-w-7xl mx-auto">
+        {/* Top Row */}
+        <div className="flex flex-col md:flex-row justify-between items-start gap-10">
+          {/* Logo + Description */}
+          <div>
+            <div className="flex items-center mb-4">
+              <img src="/logo.png" alt="Logo" className="w-[300px]" />
             </div>
-            </main>
-            
-        </footer>
-    );
+            <p className="text-sm max-w-xs">
+              Showcasing my work, skills, and experiences as a web developer. Let’s build something together!
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className=" font-semibold mb-3">Quick Links</h4>
+            <ul className="text-sm space-y-2">
+              <li><a href="#about" className="hover:text-white">About</a></li>
+              <li><a href="#projects" className="hover:text-white">Projects</a></li>
+              <li><a href="#skills" className="hover:text-white">Skills</a></li>
+              <li><a href="#contact" className="hover:text-white">Contact</a></li>
+            </ul>
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <h4 className=" font-semibold mb-3">Connect</h4>
+            <ul className="text-sm space-y-2">
+              <li>
+                <a href="https://github.com/yourusername" target="_blank" className="hover:text-white">GitHub</a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" className="hover:text-white">LinkedIn</a>
+              </li>
+              <li>
+                <a href="mailto:your@email.com" className="hover:text-white">Email Me</a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Newsletter (Optional) */}
+          <div>
+            <h4 className=" font-semibold mb-3">Newsletter</h4>
+            <p className="text-sm text-gray mb-2">Stay updated with my latest projects.</p>
+            <form className="flex flex-col gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="px-3 py-2 rounded bg-gray-400 text-white placeholder:text-gray-100 text-sm"
+              />
+              <button className="bg-[#f04161] text-white px-3 py-2 rounded text-sm hover:bg-pink-600">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-700 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
+          <span>&copy; {new Date().getFullYear()} Sujan. All rights reserved.</span>
+          <span>
+            Built with <a href="https://react.dev/" className="underline hover:text-white">React</a> &amp; <a href="https://tailwindcss.com/" className="underline hover:text-white">Tailwind CSS</a>
+          </span>
+        </div>
+      </main>
+    </footer>
+  );
 }

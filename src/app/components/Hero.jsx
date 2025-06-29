@@ -1,63 +1,119 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useState, useEffect, useRef, use } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { SplitText } from "gsap/all";
 
-const logos = [
-  { name: "WordPress", src: "/wordpress.svg" },
-  { name: "React", src: "/react.svg" },
-  { name: "Next.js", src: "/nextjs.svg" },
-  { name: "HTML", src: "/html.svg" },
-  { name: "CSS", src: "/css.svg" },
-  { name: "TailwindCSS", src: "/tailwindcss.svg" },
-  { name: "JavaScript", src: "/js.svg" },
-  { name: "MongoDB", src: "/mongodb.svg" },
-  { name: "ExpressJS", src: "/express.svg" },
-];
+// const logos = [
+//   { name: "WordPress", src: "/wordpress.svg" },
+//   { name: "React", src: "/react.svg" },
+//   { name: "Next.js", src: "/nextjs.svg" },
+//   { name: "HTML", src: "/html.svg" },
+//   { name: "CSS", src: "/css.svg" },
+//   { name: "TailwindCSS", src: "/tailwindcss.svg" },
+//   { name: "JavaScript", src: "/js.svg" },
+//   { name: "MongoDB", src: "/mongodb.svg" },
+//   { name: "ExpressJS", src: "/express.svg" },
+// ];
 
-const logoSize = 70;// Default to desktop radius
+// const logoSize = 70; // Default to desktop radius
 
 const Carousel3D = () => {
-  const [active, setActive] = useState(0);
-  const [radius, setRadius] = useState(230);
+  // const [active, setActive] = useState(0);
+  // const [radius, setRadius] = useState(230);
+  // const container = useRef(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % logos.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setActive((prev) => (prev + 1) % logos.length);
+  //   }, 4000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
-  useEffect(() => {
-  const getRadius = () => (window.innerWidth >= 768 ? 230 : 150);
-  setRadius(getRadius());
+  // useEffect(() => {
+  //   const getRadius = () => (window.innerWidth >= 768 ? 230 : 150);
+  //   setRadius(getRadius());
 
-  const handleResize = () => {
-    setRadius(getRadius());
-  };
+  //   const handleResize = () => {
+  //     setRadius(getRadius());
+  //   };
 
-  window.addEventListener("resize", handleResize);
-  return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
+  useGSAP(() => {
+    // Make sure SplitText is registered
+    gsap.registerPlugin(SplitText);
+
+    const split = new SplitText("#hero-title", { type: "chars" });
+
+    gsap.set(split.chars, {
+      y: 80,
+    });
+    gsap.timeline({
+      paused: true,
+    });
+    gsap.to(split.chars, {
+      y: 0,
+      stagger: 0.05,
+      delay: 0.2,
+      duration: 0.5,
+      ease: "power4.inout",
+      clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+    });
+  });
 
   return (
-    <div>
-      <main className="flex lg:flex-row flex-col-reverse items-center justify-between px-[1rem] lg:py-[4rem]">
-        <div className="lg:w-3/4 space-y-4 w-full items-center text-center lg:text-left">
-          <h1>
-            Building Clean, <span>Fast & Scalable</span> Web Experiences for
-            Modern Brands.
+    <main
+      className="flex lg:flex-row flex-col-reverse items-center justify-between p-1"
+      // ref={container}
+      
+    >
+      <div  className="lg:w-3/4 space-y-4 w-full items-center text-center lg:text-left px-[1rem]  h-full flex flex-col justify-center lg:items-start items-center">
+        <div>
+          <h1
+            id="hero-title"
+            style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
+          >
+            Build Fast & Scalable
           </h1>
-          <p>
-            Hi, I'm Sujan — a Web Developer who turns ideas into beautiful
-            digital solutions. I specialize in building
-            <span>SEO-friendly WordPress &amp; Next.js</span> websites that load
-            fast and convert better.
-          </p>
-          <button>Get in touch</button>
+          <h1
+            id="hero-title"
+            style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)" }}
+          >
+            Websites
+          </h1>
         </div>
-        <div
+
+        <p>
+          Hi, I'm Sujan — a Web Developer who turns ideas into beautiful digital
+          solutions. I specialize in building
+          <span> SEO-friendly WordPress &amp; Next.js </span> websites that load
+          fast and convert better.
+        </p>
+        <button>Get in touch</button>
+      </div>
+      <div className="w-1/2 lg:h-[620px] md:h-[600px] h-[400px] flex items-center justify-center"
+        style={{
+          backgroundImage: "url('/site4.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "top",
+          objectFit: "cover",
+          maxWidth: "500px",
+        }}
+      >
+        {/* <img
+          src="/site4.jpg"
+          alt="hero"
+          className="w-full h-full object-cover sm:w-[320px] sm:h-[320px] md:w-[400px] md:h-[400px]"
+          style={{ objectFit: "cover", zIndex: 3 }}
+        /> */}
+      </div>
+      {/* <div
           className="flex items-center justify-center w-1/2 lg:h-[500px] md:h-[600px] h-[400px]"
           style={{ margin: "0 auto" }}
         >
-          {/* 3D Carousel Items */}
+           3D Carousel Items 
           <div className="relative w-full h-full">
             <div
               className="absolute left-1/2 top-1/2"
@@ -127,7 +183,6 @@ const Carousel3D = () => {
               })}
             </div>
 
-            {/* Center image (appears behind focused but in front of others) */}
             <img
               src="/hero-image.png"
               alt="hero"
@@ -138,10 +193,9 @@ const Carousel3D = () => {
                 zIndex: 3,
               }}
             />
-          </div>
-        </div>
-      </main>
-    </div>
+          </div> 
+        </div> */}
+    </main>
   );
 };
 

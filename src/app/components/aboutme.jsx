@@ -10,7 +10,7 @@ const AboutMe = () => (
         <h2 className=" font-bold text-gray-800 mb-4 border-b-2 border-blue-500 pb-2">
           About Me
         </h2>
-        <p className="text-gray-700 mb-4">
+        <p className="text-gray-700 mb-4 ">
           Hello! I'm <strong className="">Sujan Thapa</strong>, a passionate
           Computer Science and Information Technology (CSIT) student. I am
           enthusiastic about software development, problem-solving, and

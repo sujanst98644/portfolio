@@ -2,15 +2,9 @@
 import React, { use } from "react";
 import "./globals.css";
 import Header from "./components/header";
-import Homepage from "./pages/home";
+import Homepage from "./components/home";
 import Foot from "./components/footer";
 
 export default function Home() {
-  return (
-    <div >
-      <Header />
-      <Homepage/>
-      <Foot/>
-    </div>
-  );
+  return <Homepage />;
 }
